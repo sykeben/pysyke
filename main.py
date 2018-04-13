@@ -5,16 +5,19 @@
 # Ben Sykes              #
 ##########################
 
+
 # <<< Import libraries and custom modules >>>
 import cmd
 import os
 import math
+
 
 # <<< Define the "SykeShell" class >>>
 class SykeShell(cmd.Cmd):
     intro = 'Welcome to SykeShell, the shell for PySyke\n'
     prompt = '>-=> '
     file = None
+
 
     # ~~~ Core commands ~~~
     def do_quit(self, arg):
@@ -29,6 +32,15 @@ class SykeShell(cmd.Cmd):
             except:
                 print("An error occurred.")
     def do_credits(self, arg):
+        # Print the credits
+        print("")
+        print("- PYSYKE DEVELOPER -")
+        print("= Benjamin Sykes")
+        print("")
+        print("- SPECIAL THANKS -")
+        print("= JetBrains")
+        print("= Nicholis Hubbard")
+        print("")
 
 
     # ~~~ Basic commands ~~~
@@ -38,6 +50,7 @@ class SykeShell(cmd.Cmd):
     def do_print(self, arg):
         # Print the argument(s) inputted
         print(arg)
+
 
     # ~~~ Mathematical commands ~~
     def do_calc(self, arg):
@@ -90,6 +103,7 @@ class SykeShell(cmd.Cmd):
         except:
             # Print error
             print("An error has occurred.")
+
 
 if __name__ == '__main__':
     SykeShell().cmdloop()
