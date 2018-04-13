@@ -34,12 +34,12 @@ class SykeShell(cmd.Cmd):
     def do_credits(self, arg):
         # Print the credits
         print("")
-        print("- PYSYKE DEVELOPER -")
-        print("= Benjamin Sykes")
+        print("-=< PYSYKE DEVELOPER >=-")
+        print("* Benjamin Sykes")
         print("")
-        print("- SPECIAL THANKS -")
-        print("= JetBrains")
-        print("= Nicholis Hubbard")
+        print("-=< SPECIAL THANKS >=-")
+        print("* JetBrains")
+        print("* Nicholis Hubbard")
         print("")
 
 
