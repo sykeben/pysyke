@@ -28,40 +28,68 @@ class SykeShell(cmd.Cmd):
                 os.system("clear")
             except:
                 print("An error occurred.")
+    def do_credits(self, arg):
+
 
     # ~~~ Basic commands ~~~
     def do_beep(self, arg):
+        # Print a bell character
         print('\b',end='')
     def do_print(self, arg):
+        # Print the argument(s) inputted
         print(arg)
 
     # ~~~ Mathematical commands ~~
-    def do_math(self, arg):
-        arglist = arg.split()
-        mathmode = arglist[0]
+    def do_calc(self, arg):
+        # SPECIAL THANKS TO NICHOLIS HUBBARD :)
         try:
-            if mathmode == "add":
-                print(int(arglist[1]) + int(arglist[2]))
-            elif mathmode == "subtract":
-                print(int(arglist[1]) - int(arglist[2]))
-            elif mathmode == "multiply":
-                print(int(arglist[1]) * int(arglist[2]))
-            elif mathmode == "divide":
-                print(int(arglist[1]) / int(arglist[2]))
-            elif mathmode == "modulo":
-                print(int(arglist[1]) % int(arglist[2]))
-            elif mathmode == "sin":
-                print(math.sin(float(arglist[1])))
-            elif mathmode == "cos":
-                print(math.cos(float(arglist[1])))
-            elif mathmode == "tan":
-                print(math.tan(float(arglist[1])))
-            elif mathmode == "sqrt":
-                print(math.sqrt(float(arglist[1])))
-            else:
-                print("Invalid operation.")
-        except ValueError:
-            print("Invalid type or argument count.")
+            # Attempt to split the args into a list
+            arglist = arg.split()
+            mathmode = arglist[0]
+            try:
+                # Calculate accordingly
+                if mathmode == "help":
+                    # Print help info
+                    print("Math Commands:")
+                    print(" add       subtract  multiply")
+                    print(" divide    module    sin")
+                    print(" cos       tan       sqrt")
+                elif mathmode == "add":
+                    # Add
+                    print(int(arglist[1]) + int(arglist[2]))
+                elif mathmode == "subtract":
+                    # Subtract
+                    print(int(arglist[1]) - int(arglist[2]))
+                elif mathmode == "multiply":
+                    # Multiply
+                    print(int(arglist[1]) * int(arglist[2]))
+                elif mathmode == "divide":
+                    # Divide
+                    print(int(arglist[1]) / int(arglist[2]))
+                elif mathmode == "modulo":
+                    # Modulo (Calculate remainder)
+                    print(int(arglist[1]) % int(arglist[2]))
+                elif mathmode == "sin":
+                    # Calculate sine
+                    print(math.sin(float(arglist[1])))
+                elif mathmode == "cos":
+                    # Calculate cosine
+                    print(math.cos(float(arglist[1])))
+                elif mathmode == "tan":
+                    # Calculate tangent
+                    print(math.tan(float(arglist[1])))
+                elif mathmode == "sqrt":
+                    # Calculate square root
+                    print(math.sqrt(float(arglist[1])))
+                else:
+                    # Print error
+                    print("Invalid operation.")
+            except:
+                # Print error
+                print("Invalid type or argument count.")
+        except:
+            # Print error
+            print("An error has occurred.")
 
 if __name__ == '__main__':
     SykeShell().cmdloop()
