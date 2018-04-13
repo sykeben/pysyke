@@ -10,6 +10,7 @@
 import cmd
 import os
 import math
+import prettytable
 
 
 # <<< Define the "SykeShell" class >>>
@@ -103,7 +104,49 @@ class SykeShell(cmd.Cmd):
         except:
             # Print error
             print("An error has occurred.")
-
+    def do_eval(self, arg):
+        # Attempt to calculate
+        try:
+            print(eval(arg))
+        except:
+            print("Formatting error or mismatch.")
+    def do_itable(self, arg):
+        # Get the command
+        print("Enter an expression with x as the variable (E.G. \"3x+5\"):")
+        tablecalc = input(">>> ")
+        print("Checking . . . ", end='')
+        try:
+            x = 1
+            eval(tablecalc)
+            print("Done.")
+        except:
+            print("ERROR!")
+            return
+        print("Enter the starting point:")
+        try:
+            startpoint = float(input(">>> "))
+        except:
+            print("Invalid type.")
+            return
+        print("Enter the increment value:")
+        try:
+            increment = float(input(">>> "))
+        except:
+            print("Invalid type.")
+            return
+        print("Enter the amount of increments to do:")
+        try:
+            amount = int(input(">>> "))
+        except:
+            print("Invalid type.")
+            return
+        print("Please wait, calculating . . . ")
+        calctable = prettytable.PrettyTable(['X', 'Result'])
+        n = 0
+        while n < amount:
+            n += 1
+            x = (increment * n) + startpoint
+            calctable.add_row([x, eval(tablecalc)])
 
 if __name__ == '__main__':
     SykeShell().cmdloop()
