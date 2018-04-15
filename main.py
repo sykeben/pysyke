@@ -7,22 +7,31 @@
 
 
 # <<< Import libraries and custom modules >>>
+
 import cmd
 import os
 import math
-import prettytable
 
 
 # <<< Define the "SykeShell" class >>>
+
 class SykeShell(cmd.Cmd):
+
+    # ~~~ Definitions ~~~
     intro = 'Welcome to SykeShell, the shell for PySyke\n'
     prompt = '>-=> '
     file = None
+    def default(self, line):
+        print("ERROR! Invalid command: " + line)
 
 
     # ~~~ Core commands ~~~
+
     def do_quit(self, arg):
         quit()
+    def help_quit(self):
+        print("Quit SykeShell, then PySyke.")
+
     def do_clear(self, arg):
         # Try to clear the screen
         try:
@@ -32,6 +41,9 @@ class SykeShell(cmd.Cmd):
                 os.system("clear")
             except:
                 print("An error occurred.")
+    def help_clear(self):
+        print("Attempt to clear the screen (Should work on Windows and Linux/UNIX).")
+
     def do_credits(self, arg):
         # Print the credits
         print("")
@@ -42,18 +54,28 @@ class SykeShell(cmd.Cmd):
         print("* JetBrains")
         print("* Nicholis Hubbard")
         print("")
+    def help_credits(self):
+        print("Shows the credits for your current version of PySyke SykeShell.")
 
 
     # ~~~ Basic commands ~~~
+
     def do_beep(self, arg):
         # Print a bell character
         print('\b',end='')
+    def help_beep(self):
+        print("Attempts to beep by printing the bell character.")
+
     def do_print(self, arg):
         # Print the argument(s) inputted
         print(arg)
+    def help_print(self):
+        print("Prints the text supplied to the console.")
+        print("SYNTAX: print [text]")
 
 
-    # ~~~ Mathematical commands ~~
+    # ~~~ Mathematical commands ~~~
+
     def do_calc(self, arg):
         # SPECIAL THANKS TO NICHOLIS HUBBARD :)
         try:
@@ -104,49 +126,29 @@ class SykeShell(cmd.Cmd):
         except:
             # Print error
             print("An error has occurred.")
+    def help_calc(self):
+        print("Performs a calculation with 1-2 numbers.")
+        print("SYNTAX: calc [subcommand] [num1] ([num2])")
+        print("Run calc's \"help\" command to list subcommands.")
+
     def do_eval(self, arg):
         # Attempt to calculate
         try:
             print(eval(arg))
         except:
             print("Formatting error or mismatch.")
-    def do_itable(self, arg):
-        # Get the command
-        print("Enter an expression with x as the variable (E.G. \"3x+5\"):")
-        tablecalc = input(">>> ")
-        print("Checking . . . ", end='')
-        try:
-            x = 1
-            eval(tablecalc)
-            print("Done.")
-        except:
-            print("ERROR!")
-            return
-        print("Enter the starting point:")
-        try:
-            startpoint = float(input(">>> "))
-        except:
-            print("Invalid type.")
-            return
-        print("Enter the increment value:")
-        try:
-            increment = float(input(">>> "))
-        except:
-            print("Invalid type.")
-            return
-        print("Enter the amount of increments to do:")
-        try:
-            amount = int(input(">>> "))
-        except:
-            print("Invalid type.")
-            return
-        print("Please wait, calculating . . . ")
-        calctable = prettytable.PrettyTable(['X', 'Result'])
-        n = 0
-        while n < amount:
-            n += 1
-            x = (increment * n) + startpoint
-            calctable.add_row([x, eval(tablecalc)])
+    def help_eval(self):
+        print("Evaluate an expression.")
+        print("SYNTAX: eval [expression]")
+
+
+# <<< Start the "cmdloop" >>>
 
 if __name__ == '__main__':
-    SykeShell().cmdloop()
+    try:
+        # Try the "cmdloop"
+        SykeShell().cmdloop()
+    except:
+        # If it exits or fails, let the user know
+        print("Well, something happened or you exited.")
+        print("Goodbye!")
