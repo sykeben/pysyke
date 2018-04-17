@@ -128,8 +128,8 @@ class SykeShell(cmd.Cmd):
             print("An error has occurred.")
     def help_calc(self):
         print("Performs a calculation with 1-2 numbers.")
-        print("SYNTAX: calc [subcommand] [num1] ([num2])")
-        print("Run calc's \"help\" command to list subcommands.")
+        print("SYNTAX: calc [sub-command] [num1] ([num2])")
+        print("Run calc's \"help\" command to list sub-commands.")
 
     def do_eval(self, arg):
         # Attempt to calculate
